@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -14,7 +16,7 @@ import { HomeComponent } from './views/home/home.component'
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent, SidebarComponent, SidebarMenuComponent, LoginComponent, RegisterComponent, HomeComponent],
-	imports: [BrowserModule, AppRoutingModule, NgbModule, FontAwesomeModule],
+	imports: [BrowserModule, AppRoutingModule, NgbModule, FontAwesomeModule, FormsModule, HttpClientModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
