@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="col-md-3">
+		<a class="navbar-brand logo" href="#">Notebook</a>
+	</div>
+	<div class="col-md-9">
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav col-md-12 px-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">
+						<form class="form-inline my-2 my-lg-0">
+							<input
+								class="form-control mr-sm-2"
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+							/>
+						</form>
+					</a>
+				</li>
+				<li class="nav-item user-dropdown" ngbDropdown>
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="userDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						ngbDropdownToggle
+					>
+						Welcome back, John!
+						<img
+							src="assets/images/default-avatar.png"
+							class="rounded-circle ml-2"
+						/>
+					</a>
+					<div
+						ngbDropdownMenu
+						aria-labelledby="userDropdown"
+						class="dropdown-menu-right"
+					>
+						<button ngbDropdownItem>Action - 1</button>
+						<button ngbDropdownItem>Another Action</button>
+						<button ngbDropdownItem>Something else is here</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

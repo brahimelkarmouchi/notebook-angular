@@ -1,0 +1,30 @@
+.navbar {
+	height: $navbar-height;
+	position: sticky;
+	top: 0;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+	.logo {
+		text-transform: uppercase;
+		font-family: $heading-font;
+		font-weight: bold;
+		letter-spacing: 1px;
+		font-size: 1.25rem;
+	}
+
+	.navbar-nav {
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.user-dropdown {
+		#userDropdown {
+			&:after {
+				display: none;
+			}
+		}
+		img {
+			height: calc(#{$navbar-height} / 2);
+		}
+	}
+}
