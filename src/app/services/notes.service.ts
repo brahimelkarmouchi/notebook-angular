@@ -12,4 +12,8 @@ export class NotesService {
 	getNotes(): Observable<Note[]> {
 		return this.http.get<Note[]>('/api/notes')
 	}
+
+	getNote($id: number): Observable<Note> {
+		return this.http.get<Note>(`/api/notes/${$id}`)
+	}
 }

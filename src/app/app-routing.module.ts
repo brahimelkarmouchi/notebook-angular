@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { LoginComponent } from './views/auth/login/login.component'
 import { RegisterComponent } from './views/auth/register/register.component'
 import { HomeComponent } from './views/home/home.component'
+import { EditComponent as EditNoteComponent } from './views/notes/edit/edit.component'
 import { IndexComponent as NoteIndexComponent } from './views/notes/index/index/index.component'
 
 const routes: Routes = [
@@ -17,7 +18,10 @@ const routes: Routes = [
 	{
 		path: 'home',
 		component: HomeComponent,
-		children: [{ path: '', component: NoteIndexComponent }],
+		children: [
+			{ path: '', component: NoteIndexComponent },
+			{ path: 'notes/:id', component: EditNoteComponent },
+		],
 	},
 ]
 

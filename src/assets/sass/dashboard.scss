@@ -1,6 +1,8 @@
 .content-wrapper {
 	padding: 25px 50px;
 	position: relative;
+	height: calc(100vh - 70px);
+	overflow-y: auto;
 
 	#add-note {
 		position: fixed;
@@ -21,4 +23,9 @@
 			@include transform(rotate(180deg));
 		}
 	}
+}
+
+.mce-content-body {
+	outline: none !important;
+	height: calc(100vh - 200px);
 }

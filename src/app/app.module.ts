@@ -17,6 +17,8 @@ import { httpInterceptorProviders } from './interceptors'
 import { IndexComponent } from './views/notes/index/index/index.component'
 import { NoteCardComponent } from './components/note-card/note-card.component'
 import { TruncatePipe } from './pipes/truncate.pipe'
+import { EditComponent } from './views/notes/edit/edit.component'
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular'
 
 @NgModule({
 	declarations: [
@@ -30,6 +32,7 @@ import { TruncatePipe } from './pipes/truncate.pipe'
 		IndexComponent,
 		NoteCardComponent,
 		TruncatePipe,
+		EditComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -38,8 +41,12 @@ import { TruncatePipe } from './pipes/truncate.pipe'
 		FontAwesomeModule,
 		FormsModule,
 		HttpClientModule,
+		EditorModule, // Tinymce
 	],
-	providers: [httpInterceptorProviders],
+	providers: [
+		httpInterceptorProviders,
+		{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, // Lazy load tinymce
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
