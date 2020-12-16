@@ -1,6 +1,6 @@
 .form-control {
 	border: 1px solid $border-color;
-	border-radius: 25px;
+	border-radius: $border-radius;
 	padding-right: 25px;
 	padding-left: 25px;
 	font-size: 0.875rem;

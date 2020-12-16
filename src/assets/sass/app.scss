@@ -14,9 +14,10 @@
 
 /* Import components */
 @import 'components/forms';
+@import 'components/cards';
 
 @import 'reset';
 @import 'navbar';
 @import 'sidebar';
 @import 'landing-screens/auth';
-
+@import 'dashboard';

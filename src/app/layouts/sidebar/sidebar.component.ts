@@ -4,6 +4,8 @@ import {
 	faClipboard,
 	faTags,
 } from '@fortawesome/free-solid-svg-icons'
+import { Tag } from 'src/app/interfaces/tag'
+import { TagsService } from 'src/app/services/tags.service'
 
 @Component({
 	selector: 'app-sidebar',
@@ -15,8 +17,17 @@ export class SidebarComponent implements OnInit {
 	faClipboard = faClipboard
 	faTags = faTags
 	public isCollapsed = false
+	tags: Tag[] = []
 
-	constructor() {}
+	constructor(private tagsService: TagsService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.tagsService.getTags().subscribe(
+			(tags) => {
+				this.tags = tags
+				// console.log(tags)
+			},
+			(error) => console.log(error)
+		)
+	}
 }

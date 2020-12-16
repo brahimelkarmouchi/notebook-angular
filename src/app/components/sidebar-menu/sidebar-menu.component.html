@@ -1,11 +1,10 @@
 <div class="sidebar-menu">
 	<a
-		href="#"
 		class="nav-link sidebar-menu-title"
 		(click)="collapse.toggle()"
 		[attr.aria-expanded]="!isCollapsed"
 	>
-		<h5>School</h5>
+		<h5>{{ tag.title }}</h5>
 		<div class="sidebar-menu-icon">
 			<fa-icon [icon]="faChevronRight"></fa-icon>
 		</div>
@@ -15,8 +14,13 @@
 		#collapse="ngbCollapse"
 		[(ngbCollapse)]="isCollapsed"
 	>
-		<li class="sidebar-menu-item"><a href="#">My first note</a></li>
-		<li class="sidebar-menu-item"><a href="#">My second note</a></li>
-		<li class="sidebar-menu-item"><a href="#">My third note</a></li>
+		<ng-container *ngIf="haveNotes(); else noNote">
+			<li class="sidebar-menu-item" *ngFor="let note of tag.notes">
+				<a routerLink="/home">{{ note.title }}</a>
+			</li>
+		</ng-container>
+		<ng-template #noNote>
+			<li class="sidebar-menu-item">No note in this tag yet.</li>
+		</ng-template>
 	</ul>
 </div>

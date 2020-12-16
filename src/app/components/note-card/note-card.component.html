@@ -1,0 +1,32 @@
+<a class="card" routerLink="/home">
+	<div class="card-body">
+		<h5 class="card-title">{{ note.title | truncate: 45 }}</h5>
+		<p class="card-text">
+			{{ note.body | truncate: 80 }}
+		</p>
+		<ul class="card-info list-inline">
+			<li class="list-inline-item">
+				<fa-icon [icon]="faTag"></fa-icon> {{ note.tag.title }}
+			</li>
+			<li class="list-inline-item divider">|</li>
+			<li class="list-inline-item">
+				Modified : {{ note.updated_at | date: 'short' }}
+			</li>
+		</ul>
+	</div>
+	<div class="card-footer">
+		<a routerLink="/home" class="card-action pin-action" title="Pin note">
+			<fa-icon [icon]="faThumbtack"></fa-icon>
+		</a>
+		<a routerLink="/home" class="card-action" title="Edit note">
+			<fa-icon [icon]="faPen"></fa-icon>
+		</a>
+		<a
+			routerLink="/home"
+			class="card-action text-danger"
+			title="Delete note"
+		>
+			<fa-icon [icon]="faTrash"></fa-icon>
+		</a>
+	</div>
+</a>

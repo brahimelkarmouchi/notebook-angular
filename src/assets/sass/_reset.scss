@@ -4,6 +4,22 @@ body {
 	padding: 0;
 	margin: 0;
 	overflow-x: hidden;
+	font-family: $text-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	font-family: $heading-font;
 }
 
 .form-control,

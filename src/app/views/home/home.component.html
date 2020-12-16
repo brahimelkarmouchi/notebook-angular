@@ -1,15 +1,21 @@
 <div>
-    <app-header></app-header>
+	<app-header></app-header>
 
-    <div class="main-panel">
-        <div class="row">
-            <div class="col-md-3">
-                <app-sidebar></app-sidebar>
-            </div>
+	<div class="container-fluid page-wrapper px-0">
+		<div class="row no-gutters">
+			<div class="col-md-3 sidebar-wrapper">
+				<app-sidebar></app-sidebar>
+			</div>
 
-            <div class="col-md-9">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
+			<div class="col-md-9 main-panel">
+				<div class="content-wrapper">
+					<router-outlet></router-outlet>
+
+					<a routerLink="/home" id="add-note">
+						<fa-icon [icon]="faPlus"></fa-icon>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

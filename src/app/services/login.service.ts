@@ -1,22 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class LoginService {
-  baseUrl: string = 'localhost:8000'
-  constructor(private http: HttpClient) {}
+	baseUrl: string = ''
+	constructor(private http: HttpClient) {}
 
-  initializeCSRFToken() {
-    return this.http.get(`${this.baseUrl}/sanctum/csrf-cookie`);
-  }
+	initializeCSRFToken() {
+		return this.http.get('/sanctum/csrf-cookie')
+	}
 
-  login(credentials, remember) {
-    return this.http.post(`${this.baseUrl}/login`, {
-      email: credentials.email,
-      password: credentials.password,
-      remember: remember
-    });
-  }
+	login(credentials: Object, remember: boolean): Observable<any> {
+		let data: Object
+		if (remember) {
+			data = {
+				...credentials,
+				remember: remember,
+			}
+		} else {
+			data = credentials
+		}
+		return this.http.post('/api/login', data, { observe: 'response' })
+	}
 }

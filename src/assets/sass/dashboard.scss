@@ -1,1 +1,24 @@
+.content-wrapper {
+	padding: 25px 50px;
+	position: relative;
 
+	#add-note {
+		position: fixed;
+		bottom: 50px;
+		right: 70px;
+		width: 60px;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		background: $primary;
+		color: #fff;
+		font-size: 0.75rem;
+		@include transition(0.3s);
+
+		&:hover {
+			@include transform(rotate(180deg));
+		}
+	}
+}

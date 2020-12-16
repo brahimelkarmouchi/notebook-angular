@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { Tag } from 'src/app/interfaces/tag'
 
 @Component({
 	selector: 'app-sidebar-menu',
@@ -7,10 +8,16 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 	styleUrls: ['./sidebar-menu.component.scss'],
 })
 export class SidebarMenuComponent implements OnInit {
-	public isCollapsed = true
+	@Input() tag: Tag
+
+	isCollapsed = true
 	faChevronRight = faChevronRight
 
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	haveNotes(): boolean {
+		return this.tag.notes.length > 0
+	}
 }
