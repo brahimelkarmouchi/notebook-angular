@@ -1,7 +1,7 @@
 import { Note } from './note'
 
 export interface Tag {
-	id: bigint
+	id: number
 	title: string
 	notes: Note[]
 }

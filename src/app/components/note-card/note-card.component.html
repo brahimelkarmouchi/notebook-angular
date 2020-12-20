@@ -1,14 +1,16 @@
 <a class="card" routerLink="notes/{{ note.id }}">
 	<div class="card-body">
-		<h5 class="card-title">{{ note.title | truncate: 45 }}</h5>
+		<h5 class="card-title">
+			{{ note.title ? (note.title | truncate: 45) : 'Untitled' }}
+		</h5>
 		<p class="card-text">
-			{{ note.body | truncate: 80 }}
+			{{ note.body ? (note.body | truncate: 80) : '' }}
 		</p>
 		<ul class="card-info list-inline">
-			<li class="list-inline-item">
+			<li class="list-inline-item" *ngIf="note.tag">
 				<fa-icon [icon]="faTag"></fa-icon> {{ note.tag.title }}
 			</li>
-			<li class="list-inline-item divider">|</li>
+			<li class="list-inline-item divider" *ngIf="note.tag">|</li>
 			<li class="list-inline-item">
 				Modified : {{ note.updated_at | date: 'short' }}
 			</li>

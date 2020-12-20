@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
 		return this.loginService.initializeCSRFToken().subscribe(() => {
 			this.loginService
 				.login(this.credentials, this.remember)
-				.subscribe((response) => {
-					console.log(response)
+				.subscribe(() => {
+					localStorage.setItem('isLoggedIn', 'true')
 					this.router.navigate(['/home'])
 				})
 		})

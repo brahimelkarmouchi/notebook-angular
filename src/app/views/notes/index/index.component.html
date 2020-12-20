@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row p-4">
 	<div class="col-md-12 mb-3">
 		<h3>All notes</h3>
 	</div>
@@ -10,4 +10,8 @@
 			</div>
 		</div>
 	</div>
+
+	<a routerLink="/home" id="add-note" (click)="addNote()">
+		<fa-icon [icon]="faPlus"></fa-icon>
+	</a>
 </div>

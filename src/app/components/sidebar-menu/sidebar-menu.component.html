@@ -16,7 +16,7 @@
 	>
 		<ng-container *ngIf="haveNotes(); else noNote">
 			<li class="sidebar-menu-item" *ngFor="let note of tag.notes">
-				<a routerLink="/home">{{ note.title }}</a>
+				<a routerLink="/home/notes/{{ note.id }}">{{ note.title }}</a>
 			</li>
 		</ng-container>
 		<ng-template #noNote>

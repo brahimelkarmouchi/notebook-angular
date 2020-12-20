@@ -1,28 +1,68 @@
 <div class="container-fluid auth">
-    <div class="row justify-content-center h-100 align-items-center">
-        <div class="col-md-4">
-            <form action="">
-
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email adress" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
-                </div>
-                <div class="form-group">
-                    <label for="password_confirmation">Password</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Enter your password" required>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary w-100" type="submit">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="row justify-content-center h-100 align-items-center">
+		<div class="col-md-4">
+			<form (ngSubmit)="register()" method="POST">
+				<h3 class="logo">NoteBook</h3>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input
+						type="text"
+						name="name"
+						id="name"
+						class="form-control"
+						placeholder="Enter your name"
+						[(ngModel)]="credentials.name"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						class="form-control"
+						placeholder="Enter your email adress"
+						[(ngModel)]="credentials.email"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						class="form-control"
+						placeholder="Enter your password"
+						[(ngModel)]="credentials.password"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="password_confirmation">Confirm password</label>
+					<input
+						type="password"
+						name="password_confirmation"
+						id="password_confirmation"
+						class="form-control"
+						placeholder="Enter your password"
+						[(ngModel)]="credentials.password_confirmation"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary w-100" type="submit">
+						Register
+					</button>
+				</div>
+				<div class="form-group text-center">
+					<small class="form-help">
+						Have an account already ?
+						<a routerLink="/login">Login</a>
+					</small>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

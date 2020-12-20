@@ -25,4 +25,14 @@ export class LoginService {
 		}
 		return this.http.post('/api/login', data, { observe: 'response' })
 	}
+
+	register(credentials: Object): Observable<any> {
+		return this.http.post('/api/register', credentials, {
+			observe: 'response',
+		})
+	}
+
+	logout() {
+		return this.http.post('/api/logout', {})
+	}
 }

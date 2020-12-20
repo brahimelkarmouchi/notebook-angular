@@ -1,21 +1,37 @@
-<div>
-	<app-header></app-header>
+<ng-container *ngIf="user && tags; else loading">
+	<div>
+		<app-header
+			[user]="user"
+			(toggleSidebar)="toggleSidebar()"
+		></app-header>
 
-	<div class="container-fluid page-wrapper px-0">
-		<div class="row no-gutters">
-			<div class="col-md-3 sidebar-wrapper">
-				<app-sidebar></app-sidebar>
-			</div>
+		<div class="container-fluid page-wrapper px-0">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-md-3 sidebar-wrapper" *ngIf="showSidebar">
+					<app-sidebar [tags]="tags"></app-sidebar>
+				</div>
 
-			<div class="col-md-9 main-panel">
-				<div class="content-wrapper">
-					<router-outlet></router-outlet>
-
-					<a routerLink="/home" id="add-note">
-						<fa-icon [icon]="faPlus"></fa-icon>
-					</a>
+				<div class="col-md-9 main-panel">
+					<div class="content-wrapper container-fluid">
+						<router-outlet></router-outlet>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</ng-container>
+
+<ng-template #loading>
+	<div class="loading">
+		<div class="row text-secondary">
+			<div class="col-md-12">
+				<div class="spinner-border" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="loading-text">{{ loadingMessage }}</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

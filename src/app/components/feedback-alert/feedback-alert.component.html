@@ -1,0 +1,9 @@
+<ngb-alert
+	class="feedback-alert"
+	[dismissible]="alert.dimissible"
+	*ngIf="alert.isOpen"
+	[type]="alert.type"
+	(closed)="closed.emit(false)"
+>
+	{{ alert.message }}
+</ngb-alert>

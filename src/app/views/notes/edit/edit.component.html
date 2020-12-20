@@ -1,40 +1,89 @@
-<div class="row">
-	<div class="col-md-12 mb-3">
-		<h3>{{ note.title }}</h3>
+<ng-container *ngIf="note">
+	<div class="row note-actions justify-content-end">
+		<div class="col-md-auto note-action text-danger" (click)="deleteNote()">
+			<fa-icon [icon]="faTrash"></fa-icon>
+		</div>
+		<div class="col-md-auto note-action" (click)="updateNote()">
+			<fa-icon [icon]="faSave"></fa-icon>
+		</div>
+		<div class="col-md-auto note-action">
+			<fa-icon [icon]="faInfo"></fa-icon>
+		</div>
 	</div>
 
-	<div class="col-md-12">
-		<editor
-			style="outline: none !important"
-			[init]="{
-				menubar: false,
-				inline: true,
-				plugins: [
-					'autolink',
-					'codesample',
-					'link',
-					'lists',
-					'media',
-					'powerpaste',
-					'table',
-					'image',
-					'quickbars',
-					'codesample',
-					'help'
-				],
-				toolbar: false,
-				quickbars_insert_toolbar: 'quicktable image media codesample',
-				quickbars_selection_toolbar:
-					'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | forecolor backcolor | emoticons | fullscreen | image media link',
-				contextmenu:
-					'undo redo | inserttable | cell row column deletetable | help',
-				powerpaste_word_import: 'clean',
-				powerpaste_html_import: 'clean',
-				font_formats:
-					'Poppins=\'Poppins\', sans-serif;Roboto=\'Roboto\', sans-serif;Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats'
-			}"
-			[initialValue]="note.body"
-		>
-		</editor>
-	</div>
-</div>
+	<form class="row edit-note-form no-gutters" method="POST">
+		<div class="col-md-12 mb-2">
+			<div class="note-tag" *ngIf="note.tag">
+				<span class="tag-icon">
+					<fa-icon [icon]="faTag"></fa-icon>
+				</span>
+				{{ note.tag.title }}
+				<span class="remove-tag" (click)="removeTag()">
+					<fa-icon [icon]="faTimes"></fa-icon>
+				</span>
+			</div>
+			<div class="add-note" *ngIf="!note.tag">
+				<div class="form-group">
+					<select
+						name="tag_id"
+						class="custom-select"
+						[(ngModel)]="note.tag_id"
+					>
+						<option selected>Open this select menu</option>
+						<option *ngFor="let tag of tags" value="{{ tag.id }}">
+							{{ tag.title }}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 mb-3">
+			<input
+				type="text"
+				name="title"
+				[(ngModel)]="note.title"
+				placeholder="Enter title here"
+			/>
+		</div>
+
+		<div class="col-md-12">
+			<editor
+				style="outline: none !important"
+				[init]="{
+					menubar: false,
+					inline: true,
+					plugins: [
+						'autolink',
+						'codesample',
+						'link',
+						'lists',
+						'media',
+						'table',
+						'image',
+						'quickbars',
+						'codesample',
+						'help'
+					],
+					toolbar: false,
+					quickbars_insert_toolbar:
+						'quicktable image media codesample',
+					quickbars_selection_toolbar:
+						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | forecolor backcolor | emoticons | fullscreen | image media link',
+					contextmenu:
+						'undo redo | inserttable | cell row column deletetable | help',
+					font_formats:
+						'Poppins=\'Poppins\', sans-serif;Roboto=\'Roboto\', sans-serif;Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats',
+					placeholder: 'Type something here ...'
+				}"
+				[(ngModel)]="note.body"
+				name="body"
+			>
+			</editor>
+		</div>
+	</form>
+
+	<app-feedback-alert
+		[alert]="alert"
+		(closed)="closed($event)"
+	></app-feedback-alert>
+</ng-container>

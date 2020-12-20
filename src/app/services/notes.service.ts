@@ -16,4 +16,16 @@ export class NotesService {
 	getNote($id: number): Observable<Note> {
 		return this.http.get<Note>(`/api/notes/${$id}`)
 	}
+
+	updateNote(note): Observable<Note> {
+		return this.http.patch<Note>(`/api/notes/${note.id}`, note)
+	}
+
+	deleteNote(note: Note): Observable<any> {
+		return this.http.delete(`/api/notes/${note.id}`)
+	}
+
+	addNote(): Observable<Note> {
+		return this.http.post<Note>('/api/notes', {})
+	}
 }

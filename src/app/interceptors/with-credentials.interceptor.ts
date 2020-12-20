@@ -16,6 +16,7 @@ export class WithCredentialsInterceptor implements HttpInterceptor {
 		next: HttpHandler
 	): Observable<HttpEvent<unknown>> {
 		request = request.clone({
+			// Always send XSRF-TOKEN
 			withCredentials: true,
 		})
 		return next.handle(request)
