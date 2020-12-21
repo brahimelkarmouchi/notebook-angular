@@ -61,7 +61,7 @@
 	height: calc(100vh - 200px);
 }
 
-.edit-note-form {
+.edit-note {
 	padding: 25px 50px;
 	input[name='title'] {
 		width: 100%;
@@ -69,44 +69,53 @@
 		font-size: 1.5rem;
 	}
 
-	.note-tag {
-		min-width: 90px;
-		text-align: center;
-		display: inline-block;
-		padding: 7px 15px;
-		border-radius: 25px;
-		border: 1px solid #eee;
-		font-size: 0.875rem;
-		position: relative;
-		color: $text-secondary;
+	.note-tags {
+		margin-bottom: 30px;
+		.note-tag {
+			min-width: 90px;
+			text-align: center;
+			padding: 7px 15px;
+			border-radius: 25px;
+			border: 1px solid #eee;
+			font-size: 0.875rem;
+			position: relative;
+			color: $text-secondary;
+			margin-right: 10px;
 
-		.tag-icon {
-			margin-right: 8px;
-			font-size: 0.75rem;
-		}
+			.tag-icon {
+				margin-right: 8px;
+				font-size: 0.75rem;
+			}
 
-		&:hover {
+			&:hover {
+				.remove-tag {
+					opacity: 1;
+					background-color: rgba(0, 0, 0, 0.05);
+				}
+			}
+
 			.remove-tag {
-				opacity: 1;
-				background-color: rgba(0, 0, 0, 0.05);
+				cursor: pointer;
+				font-size: 0.625rem;
+				position: absolute;
+				right: 5px;
+				top: -25%;
+				display: flex;
+				height: 20px;
+				width: 20px;
+				border: 1px solid #eee;
+				border-radius: 100%;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				@include transition(0.2s);
 			}
 		}
 
-		.remove-tag {
-			cursor: pointer;
-			font-size: 0.625rem;
-			position: absolute;
-			right: 5px;
-			top: -25%;
-			display: flex;
-			height: 20px;
-			width: 20px;
-			border: 1px solid #eee;
-			border-radius: 100%;
-			align-items: center;
-			justify-content: center;
-			opacity: 0;
-			@include transition(0.2s);
+		#addTag {
+			border: none;
+			border-bottom: 1px solid $border-color;
+			border-radius: 0;
 		}
 	}
 }

@@ -20,7 +20,6 @@ export class FeedbackAlertComponent implements OnChanges {
 	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log(changes)
 		if (
 			!changes.alert.firstChange &&
 			this.alert.timeout &&

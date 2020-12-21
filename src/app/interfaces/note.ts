@@ -5,9 +5,9 @@ export interface Note {
 	title: string
 	body: string
 	user_id: number
+	is_pinned: boolean
 	deleted_at: Date
 	created_at: Date
 	updated_at: Date
-	tag: Tag,
-	tag_id: number
+	tags: Tag[]
 }

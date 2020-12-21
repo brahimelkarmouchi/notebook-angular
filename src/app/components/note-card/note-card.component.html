@@ -1,4 +1,9 @@
-<a class="card" routerLink="notes/{{ note.id }}">
+<div
+	class="card mb-4"
+	[class.pinned]="note.is_pinned"
+	(click)="edit()"
+	style="cursor: pointer"
+>
 	<div class="card-body">
 		<h5 class="card-title">
 			{{ note.title ? (note.title | truncate: 45) : 'Untitled' }}
@@ -7,28 +12,34 @@
 			{{ note.body ? (note.body | truncate: 80) : '' }}
 		</p>
 		<ul class="card-info list-inline">
-			<li class="list-inline-item" *ngIf="note.tag">
-				<fa-icon [icon]="faTag"></fa-icon> {{ note.tag.title }}
-			</li>
-			<li class="list-inline-item divider" *ngIf="note.tag">|</li>
 			<li class="list-inline-item">
 				Modified : {{ note.updated_at | date: 'short' }}
 			</li>
 		</ul>
 	</div>
 	<div class="card-footer">
-		<a routerLink="/home" class="card-action pin-action" title="Pin note">
+		<button
+			type="button"
+			class="btn card-action pin-action"
+			(click)="emitPin($event)"
+		>
 			<fa-icon [icon]="faThumbtack"></fa-icon>
-		</a>
-		<a routerLink="/home" class="card-action" title="Edit note">
+		</button>
+		<a
+			routerLink="/home/notes/{{ note.id }}"
+			class="card-action"
+			title="Edit note"
+			#editLink
+		>
 			<fa-icon [icon]="faPen"></fa-icon>
 		</a>
-		<a
-			routerLink="/home"
-			class="card-action text-danger"
+		<button
+			type="button"
+			class="btn card-action text-danger"
 			title="Delete note"
+			(click)="emitDelete($event)"
 		>
 			<fa-icon [icon]="faTrash"></fa-icon>
-		</a>
+		</button>
 	</div>
-</a>
+</div>

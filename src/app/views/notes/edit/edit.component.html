@@ -6,34 +6,35 @@
 		<div class="col-md-auto note-action" (click)="updateNote()">
 			<fa-icon [icon]="faSave"></fa-icon>
 		</div>
-		<div class="col-md-auto note-action">
-			<fa-icon [icon]="faInfo"></fa-icon>
-		</div>
 	</div>
 
-	<form class="row edit-note-form no-gutters" method="POST">
-		<div class="col-md-12 mb-2">
-			<div class="note-tag" *ngIf="note.tag">
-				<span class="tag-icon">
-					<fa-icon [icon]="faTag"></fa-icon>
-				</span>
-				{{ note.tag.title }}
-				<span class="remove-tag" (click)="removeTag()">
-					<fa-icon [icon]="faTimes"></fa-icon>
-				</span>
-			</div>
-			<div class="add-note" *ngIf="!note.tag">
-				<div class="form-group">
-					<select
-						name="tag_id"
-						class="custom-select"
-						[(ngModel)]="note.tag_id"
+	<div class="row edit-note no-gutters">
+		<div class="col-md-12">
+			<div class="row note-tags">
+				<ng-container *ngIf="note.tags.length">
+					<div
+						class="note-tag col-md-auto"
+						*ngFor="let tag of note.tags"
 					>
-						<option selected>Open this select menu</option>
-						<option *ngFor="let tag of tags" value="{{ tag.id }}">
-							{{ tag.title }}
-						</option>
-					</select>
+						<span class="tag-icon">
+							<fa-icon [icon]="faTag"></fa-icon>
+						</span>
+						{{ tag.title }}
+
+						<span class="remove-tag" (click)="removeTag(tag.id)">
+							<fa-icon [icon]="faTimes"></fa-icon>
+						</span>
+					</div>
+				</ng-container>
+				<div class="add-tag col-md-auto flex-grow-1">
+					<input
+						type="text"
+						id="addTag"
+						class="form-control"
+						placeholder="Add a tag"
+						[(ngModel)]="tagTitle"
+						(keyup.enter)="addTag()"
+					/>
 				</div>
 			</div>
 		</div>
@@ -66,7 +67,7 @@
 					],
 					toolbar: false,
 					quickbars_insert_toolbar:
-						'quicktable image media codesample',
+						'quicktable image media codesample checklist',
 					quickbars_selection_toolbar:
 						'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | forecolor backcolor | emoticons | fullscreen | image media link',
 					contextmenu:
@@ -80,7 +81,7 @@
 			>
 			</editor>
 		</div>
-	</form>
+	</div>
 
 	<app-feedback-alert
 		[alert]="alert"

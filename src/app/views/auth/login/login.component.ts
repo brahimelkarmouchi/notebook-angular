@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
 	ngOnInit(): void {}
 
 	login() {
-		console.log(this.credentials, this.remember)
 		return this.loginService.initializeCSRFToken().subscribe(() => {
 			this.loginService
 				.login(this.credentials, this.remember)

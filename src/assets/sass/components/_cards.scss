@@ -15,7 +15,7 @@
 	}
 
 	&.pinned {
-		.pin-action {
+		.card-action.pin-action {
 			color: #fff;
 			background: $gray-900;
 		}
@@ -41,6 +41,7 @@
 		@include transition(0.3s);
 
 		.card-action {
+			cursor: pointer;
 			color: inherit;
 			margin: 0 2px;
 			font-size: 0.75rem;
@@ -53,6 +54,10 @@
 			@include transition(0.3s);
 			&:hover {
 				background: rgba(0, 0, 0, 0.05);
+
+				&.pin-action {
+					color: inherit !important;
+				}
 				&:not(.pin-action) {
 					color: $primary;
 				}

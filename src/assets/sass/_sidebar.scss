@@ -46,48 +46,8 @@
 			margin-bottom: 0;
 		}
 
-		.sidebar-menu-icon {
-			font-size: 0.625rem;
-			margin-left: 15px;
-			margin-right: 4px;
-			@include transition(0.2s);
-		}
-
-		&[aria-expanded='true'] {
-			.sidebar-menu-icon {
-				@include transform(rotate(90deg));
-			}
-		}
-
 		&:hover {
 			color: $gray-900; // Bootstrap's variable
-			.sidebar-menu-icon {
-				margin-right: 0px;
-			}
-		}
-
-		&.sidebar-menu-title {
-			justify-content: space-between;
-			cursor: pointer;
-		}
-	}
-
-	.sidebar-menu-items {
-		list-style: none;
-		margin: 10px 0;
-
-		.sidebar-menu-item {
-			padding: 4px 0;
-
-			a {
-				text-decoration: none;
-				color: $text-secondary;
-				@include transition(0.2s);
-
-				&:hover {
-					color: inherit;
-				}
-			}
 		}
 	}
 }

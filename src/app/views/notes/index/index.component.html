@@ -1,17 +1,36 @@
 <div class="row p-4">
 	<div class="col-md-12 mb-3">
-		<h3>All notes</h3>
+		<h3>My Notes</h3>
 	</div>
 
 	<div class="col-md-12">
+		<div class="row mb-5">
+			<div class="col-md-12 mb-2">
+				<h6 class="text-secondary">Pinned notes</h6>
+			</div>
+			<div class="col-md-4" *ngFor="let note of pinnedNotes()">
+				<app-note-card
+					[note]="note"
+					(delete)="deleteNote(note.id)"
+					(pin)="pin(note)"
+				></app-note-card>
+			</div>
+		</div>
 		<div class="row">
-			<div class="col-md-4" *ngFor="let note of notes">
-				<app-note-card [note]="note"></app-note-card>
+			<div class="col-md-12 mb-2">
+				<h6 class="text-secondary">All notes</h6>
+			</div>
+			<div class="col-md-4" *ngFor="let note of unPinnedNotes()">
+				<app-note-card
+					[note]="note"
+					(delete)="deleteNote(note.id)"
+					(pin)="pin(note)"
+				></app-note-card>
 			</div>
 		</div>
 	</div>
 
-	<a routerLink="/home" id="add-note" (click)="addNote()">
+	<a id="add-note" (click)="addNote()">
 		<fa-icon [icon]="faPlus"></fa-icon>
 	</a>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, HostListener, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import {
 	faInfo,
@@ -22,6 +22,7 @@ export class EditComponent implements OnInit {
 	tags: Tag[]
 	showAlert: boolean = false
 	alert: Alert = new Alert(true, false, '', '', 0)
+	tagTitle: string
 
 	faTrash = faTrash
 	faSave = faSave
@@ -51,22 +52,17 @@ export class EditComponent implements OnInit {
 		})
 	}
 
-	removeTag() {
+	removeTag(tagId: number) {
 		this.alert = new Alert(true, true, 'seconday', 'Removing tag ...', 0)
-		this.notesService
-			.updateNote({
-				id: this.note.id,
-			})
-			.subscribe((note) => {
-				this.note = note
-				this.alert = new Alert(true, true, 'success', 'removed!', 5000)
-				console.log(note)
-			})
+		this.notesService.removeTag(this.note.id, tagId).subscribe((note) => {
+			this.note = note
+			this.alert = new Alert(true, true, 'success', 'removed!', 5000)
+		})
 	}
 
 	deleteNote() {
 		this.alert = new Alert(true, true, 'seconday', 'Deleting ...', 0)
-		this.notesService.deleteNote(this.note).subscribe(() => {
+		this.notesService.deleteNote(this.note.id).subscribe(() => {
 			this.alert = new Alert(
 				true,
 				true,
@@ -76,6 +72,47 @@ export class EditComponent implements OnInit {
 			)
 			this.router.navigate(['/home'])
 		})
+	}
+
+	addTag() {
+		this.alert = new Alert(true, true, 'seconday', 'Adding ...', 0)
+		let noteAlreadyAttached = this.note.tags.filter(
+			(tag) => tag.title == this.tagTitle
+		).length
+		if (!noteAlreadyAttached) {
+			this.notesService.addTag(this.note.id, this.tagTitle).subscribe(
+				(note) => {
+					this.note = note
+					this.tagTitle = ''
+					this.alert = new Alert(
+						true,
+						true,
+						'success',
+						'Success !',
+						5000
+					)
+				},
+				(error) => {
+					this.tagTitle = ''
+					this.alert = new Alert(
+						true,
+						true,
+						'danger',
+						'Something went wrong, please try again !',
+						5000
+					)
+				}
+			)
+		} else {
+			this.alert = new Alert(
+				true,
+				true,
+				'warning',
+				'Tag already attached',
+				5000
+			)
+			this.tagTitle = ''
+		}
 	}
 
 	// Handle alert's closing event
