@@ -1,0 +1,300 @@
+<div class="row p-4 justify-content-center" *ngIf="user">
+	<div class="col-md-8 mb-3"><h3>My informations</h3></div>
+	<div class="col-md-8">
+		<form method="POST" (ngSubmit)="updateInfos()">
+			<div class="form-group row">
+				<label class="col-md-4 col-form-label" for="name">Name</label>
+				<div class="col-md-8">
+					<input
+						type="text"
+						name="name"
+						id="name"
+						class="form-control"
+						placeholder="Enter your name"
+						[(ngModel)]="user.name"
+						required
+						#name="ngModel"
+						(keydown)="infosErrors.name = []"
+					/>
+					<small
+						class="form-help text-danger"
+						*ngIf="infosErrors.name.length"
+					>
+						<!-- Server-side validation error -->
+						{{ infosErrors.name[0] }}
+					</small>
+					<small
+						class="form-help text-danger"
+						*ngIf="name.invalid && (name.dirty || name.touched)"
+					>
+						<span *ngIf="name.errors.required">
+							The name field is required.
+						</span>
+					</small>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-md-4 col-form-label" for="email">Email</label>
+				<div class="col-md-8">
+					<input
+						type="email"
+						name="email"
+						id="email"
+						class="form-control"
+						[(ngModel)]="user.email"
+						placeholder="Enter your email adress"
+						required
+						#email="ngModel"
+						email
+						(keydown)="infosErrors.email = []"
+					/>
+					<small
+						class="form-help text-danger"
+						*ngIf="infosErrors.email.length"
+					>
+						<!-- Server-side validation error -->
+						{{ infosErrors.email[0] }}
+					</small>
+					<small
+						class="form-help text-danger"
+						*ngIf="email.invalid && (email.dirty || email.touched)"
+					>
+						<span *ngIf="email.errors.required">
+							The email field is required.
+						</span>
+						<span *ngIf="email.errors.email">
+							The email must be a valid email address.
+						</span>
+					</small>
+				</div>
+			</div>
+
+			<div class="form-group row justify-content-center">
+				<button
+					class="btn btn-primary col-md-5"
+					type="submit"
+					[disabled]="name.invalid || email.invalid"
+				>
+					<span *ngIf="!infosFormLoading">Update</span>
+
+					<div
+						class="spinner-border spinner-border-sm"
+						role="status"
+						*ngIf="infosFormLoading"
+					>
+						<span class="sr-only">Loading...</span>
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
+	<hr class="col-md-8 my-5" />
+	<div class="col-md-8 mb-3"><h3>Change password</h3></div>
+	<div class="col-md-8">
+		<form
+			method="POST"
+			(ngSubmit)="updatePassword()"
+			#changePassword="ngForm"
+			passwordConfirm
+		>
+			<div class="form-group row">
+				<label class="col-md-4 col-form-label" for="current_password">
+					Current password
+				</label>
+				<div class="col-md-8">
+					<input
+						type="password"
+						name="current_password"
+						id="current_password"
+						class="form-control"
+						[(ngModel)]="changePasswordForm.current_password"
+						placeholder="Enter your current password"
+						required
+						#current_password="ngModel"
+						minlength="8"
+						(keydown)="passwordErrors.current_password = []"
+					/>
+					<small
+						class="form-help text-danger"
+						*ngIf="
+							passwordErrors.current_password.length
+						"
+					>
+						<!-- Server-side validation error -->
+						{{ passwordErrors.current_password[0] }}
+					</small>
+					<small
+						class="form-help text-danger"
+						*ngIf="
+							current_password.invalid &&
+							(current_password.dirty || current_password.touched)
+						"
+					>
+						<span *ngIf="current_password.errors.required">
+							The password field is required.
+						</span>
+						<span *ngIf="current_password.errors.minlength">
+							The password must be at least 8 characters
+						</span>
+					</small>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-md-4 col-form-label" for="password">
+					Password
+				</label>
+				<div class="col-md-8">
+					<input
+						type="password"
+						name="password"
+						id="password"
+						class="form-control"
+						[(ngModel)]="changePasswordForm.password"
+						placeholder="Enter your password"
+						required
+						#password="ngModel"
+						minlength="8"
+						(keydown)="passwordErrors.password = []"
+					/>
+					<small
+						class="form-help text-danger"
+						*ngIf="passwordErrors.password.length"
+					>
+						<!-- Server-side validation error -->
+						{{ passwordErrors.password[0] }}
+					</small>
+					<small
+						class="form-help text-danger"
+						*ngIf="
+							password.invalid &&
+							(password.dirty || password.touched)
+						"
+					>
+						<span *ngIf="password.errors.required">
+							The password field is required.
+						</span>
+						<span *ngIf="password.errors.minlength">
+							The password must be at least 8 characters
+						</span>
+					</small>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label
+					class="col-md-4 col-form-label"
+					for="password_confirmation"
+				>
+					Confirm password
+				</label>
+				<div class="col-md-8">
+					<input
+						type="password"
+						name="password_confirmation"
+						id="password_confirmation"
+						class="form-control"
+						placeholder="Enter your password"
+						[(ngModel)]="changePasswordForm.password_confirmation"
+						#password_confirmation="ngModel"
+						(keydown)="passwordErrors.password_confirmation = []"
+					/>
+					<small
+						class="form-help text-danger"
+						*ngIf="
+							passwordErrors.password_confirmation.length
+						"
+					>
+						<!-- Server-side validation error -->
+						{{ passwordErrors.password_confirmation[0] }}
+					</small>
+					<small
+						class="form-help text-danger"
+						*ngIf="
+							changePassword.errors?.passwordConfirmed &&
+							(changePassword.touched || changePassword.dirty)
+						"
+					>
+						The password confirmation does not match.
+					</small>
+				</div>
+			</div>
+
+			<div class="form-group row justify-content-center">
+				<button
+					class="btn btn-primary col-md-5"
+					type="submit"
+					[disabled]="
+						password.invalid ||
+						current_password.invalid ||
+						password_confirmation.invalid
+					"
+				>
+					<span *ngIf="!passwordFormLoading">Change password</span>
+
+					<div
+						class="spinner-border spinner-border-sm"
+						role="status"
+						*ngIf="passwordFormLoading"
+					>
+						<span class="sr-only">Loading...</span>
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
+	<hr class="col-md-8 my-5" />
+	<div class="col-md-8 mb-3"><h3>Profile picture</h3></div>
+	<div class="col-md-8">
+		<form method="POST" (ngSubmit)="updateAvatar()" #changePassword="ngForm" passwordConfirm>
+			<div class="form-group row">
+				<label class="col-md-4 col-form-label" for="avatar">
+					Profile picture
+				</label>
+				<div class="col-md-8">
+					<div class="custom-file">
+						<input
+							type="file"
+							name="avatar"
+							id="avatar"
+							class="custom-file-input"
+							required
+							(keydown)="avatarErrors = []"
+							(change)="handleFileInput($event.target.files)"
+						/>
+						<label class="custom-file-label" for="avatar">
+							{{ fileToUpload ? fileToUpload.name : 'Choose file' }}
+						</label>
+						<small
+							class="form-help text-danger"
+							*ngIf="avatarErrors.length"
+						>
+							{{ avatarErrors[0] }}
+						</small>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-3"></div>
+				<div class="col-md-8">
+					<div class="avatar" style="background-image: url('{{ user.avatar }}');">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row justify-content-center">
+				<button class="btn btn-primary col-md-5" type="submit" [disabled]="!fileToUpload">
+					<span *ngIf="!avatarFormLoading">Change avatar</span>
+
+					<div
+						class="spinner-border spinner-border-sm"
+						role="status"
+						*ngIf="avatarFormLoading"
+					>
+						<span class="sr-only">Loading...</span>
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

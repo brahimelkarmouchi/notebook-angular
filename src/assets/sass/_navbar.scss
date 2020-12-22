@@ -12,12 +12,17 @@
 
 	.user-dropdown {
 		#userDropdown {
+			display: flex;
+			align-items: center;
 			&:after {
 				display: none;
 			}
 		}
-		img {
-			height: calc(#{$navbar-height} / 2);
-		}
+	}
+
+	.avatar {
+		width: 35px;
+		height: 35px;
+		margin-left: 10px;
 	}
 }

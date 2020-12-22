@@ -8,7 +8,10 @@
 		<div class="container-fluid page-wrapper px-0">
 			<div class="row no-gutters justify-content-center">
 				<div class="col-md-3 sidebar-wrapper" *ngIf="showSidebar">
-					<app-sidebar [tags]="tags"></app-sidebar>
+					<app-sidebar
+						[tags]="tags"
+						(deleteTag)="deleteTag($event)"
+					></app-sidebar>
 				</div>
 
 				<div class="col-md-9 main-panel">
@@ -35,3 +38,8 @@
 		</div>
 	</div>
 </ng-template>
+
+<app-feedback-alert
+	[alert]="alert"
+	(closed)="closed($event)"
+></app-feedback-alert>

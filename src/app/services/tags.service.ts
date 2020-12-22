@@ -7,9 +7,14 @@ import { Tag } from '../interfaces/tag'
 	providedIn: 'root',
 })
 export class TagsService {
+	baseURL: string = '/api/tags'
 	constructor(private http: HttpClient) {}
 
 	getTags(): Observable<Tag[]> {
-		return this.http.get<Tag[]>('/api/tags')
+		return this.http.get<Tag[]>(this.baseURL)
+	}
+
+	deleteTag(id: number): Observable<any> {
+		return this.http.delete(`${this.baseURL}/${id}`)
 	}
 }

@@ -75,7 +75,6 @@ export class EditComponent implements OnInit {
 	}
 
 	addTag() {
-		this.alert = new Alert(true, true, 'seconday', 'Adding ...', 0)
 		let noteAlreadyAttached = this.note.tags.filter(
 			(tag) => tag.title == this.tagTitle
 		).length
@@ -84,13 +83,6 @@ export class EditComponent implements OnInit {
 				(note) => {
 					this.note = note
 					this.tagTitle = ''
-					this.alert = new Alert(
-						true,
-						true,
-						'success',
-						'Success !',
-						5000
-					)
 				},
 				(error) => {
 					this.tagTitle = ''

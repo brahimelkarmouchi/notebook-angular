@@ -30,11 +30,8 @@
 						id="userDropdown"
 						role="button"
 					>
-						Welcome back, {{ user.name }}
-						<img
-							src="{{ user.avatar }}"
-							class="rounded-circle ml-2"
-						/>
+						Hi, {{ user.name }}
+						<div class="avatar" style="background-image: url('{{ user.avatar }}');"></div>
 					</a>
 					<div
 						ngbDropdownMenu
@@ -43,7 +40,7 @@
 					>
 						<a
 							ngbDropdownItem
-							href="#"
+							routerLink="/home/profile"
 							(click)="$event.preventDefault()"
 						>
 							My Profile

@@ -8,9 +8,7 @@
 		<h5 class="card-title">
 			{{ note.title ? (note.title | truncate: 45) : 'Untitled' }}
 		</h5>
-		<p class="card-text">
-			{{ note.body ? (note.body | truncate: 80) : '' }}
-		</p>
+		<p class="card-text" [innerHTML]="note.body ? (note.body | truncate: 80) : ''"></p>
 		<ul class="card-info list-inline">
 			<li class="list-inline-item">
 				Modified : {{ note.updated_at | date: 'short' }}

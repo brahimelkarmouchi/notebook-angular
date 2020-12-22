@@ -20,11 +20,11 @@ export class IndexComponent implements OnInit {
 		})
 	}
 
-	pinnedNotes(): Note[] {
+	get pinnedNotes(): Note[] {
 		return this.notes.filter((note) => note.is_pinned)
 	}
 
-	unPinnedNotes(): Note[] {
+	get unPinnedNotes(): Note[] {
 		return this.notes.filter((note) => !note.is_pinned)
 	}
 
@@ -32,13 +32,6 @@ export class IndexComponent implements OnInit {
 		this.notesService.deleteNote(id).subscribe(() => {
 			let index = this.notes.findIndex((note) => note.id == id)
 			this.notes.splice(index, 1)
-			/** this.alert = new Alert(
-				true,
-				true,
-				'success',
-				'Note deleted successfully',
-				5000
-			) **/
 		})
 	}
 

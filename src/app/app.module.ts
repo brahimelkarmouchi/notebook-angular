@@ -19,6 +19,8 @@ import { TruncatePipe } from './pipes/truncate.pipe'
 import { EditComponent } from './views/notes/edit/edit.component'
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular'
 import { FeedbackAlertComponent } from './components/feedback-alert/feedback-alert.component'
+import { PasswordConfirmValidatorDirective } from './directives/password-confirm-validator.directive';
+import { ProfileComponent } from './views/auth/profile/profile.component'
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,8 @@ import { FeedbackAlertComponent } from './components/feedback-alert/feedback-ale
 		TruncatePipe,
 		EditComponent,
 		FeedbackAlertComponent,
+		PasswordConfirmValidatorDirective,
+		ProfileComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -45,7 +49,7 @@ import { FeedbackAlertComponent } from './components/feedback-alert/feedback-ale
 	],
 	providers: [
 		httpInterceptorProviders,
-		{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, // Lazy load tinymce
+		{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
 	],
 	bootstrap: [AppComponent],
 })

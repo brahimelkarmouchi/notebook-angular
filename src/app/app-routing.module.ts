@@ -7,6 +7,7 @@ import { RegisterComponent } from './views/auth/register/register.component'
 import { HomeComponent } from './views/home/home.component'
 import { EditComponent as EditNoteComponent } from './views/notes/edit/edit.component'
 import { IndexComponent as NoteIndexComponent } from './views/notes/index/index.component'
+import { ProfileComponent } from './views/auth/profile/profile.component'
 
 const routes: Routes = [
 	{
@@ -25,6 +26,7 @@ const routes: Routes = [
 		children: [
 			{ path: '', component: NoteIndexComponent },
 			{ path: 'notes/:id', component: EditNoteComponent },
+			{ path: 'profile', component: ProfileComponent },
 		],
 		canActivate: [AuthGuard],
 	},

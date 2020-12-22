@@ -1,26 +1,57 @@
 <ul class="nav sidebar flex-column">
 	<li class="nav-item">
-		<a class="nav-link" routerLink="/home">
-			<div class="nav-icon">
-				<fa-icon [icon]="faClipboard"></fa-icon>
-			</div>
-			My Notes
-		</a>
+		<div class="nav-icon">
+			<fa-icon [icon]="faClipboard"></fa-icon>
+		</div>
+		<a class="nav-link" routerLink="/home"> My Notes </a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" routerLink="/">
-			<div class="nav-icon">
-				<fa-icon [icon]="faTags"></fa-icon>
-			</div>
-			Manage tags
-		</a>
+		<div class="nav-icon">
+			<fa-icon [icon]="faTags"></fa-icon>
+		</div>
+		<a class="nav-link" routerLink="/"> Trash </a>
 	</li>
 	<li class="nav-item sidebar-title">
 		<h6>tags</h6>
 	</li>
-	<li class="nav-item" *ngFor="let tag of tags">
-		<a routerLink="#" class="nav-link">
+	<li class="nav-item tag" *ngFor="let tag of tags">
+		<a routerLink="/home" class="nav-link tag-delete">
 			{{ tag.title }}
 		</a>
+		<button
+			type="button"
+			class="btn nav-icon text-danger"
+			(click)="showConfirmModal($event, content, tag)"
+		>
+			<fa-icon [icon]="faTrash"></fa-icon>
+		</button>
 	</li>
 </ul>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-title">Confirm deletion</h4>
+	</div>
+	<div class="modal-body">
+		<p>
+			Are you sure you want to delete the
+			<strong>{{ tagToDelete.title }}</strong> tag ?
+		</p>
+	</div>
+	<div class="modal-footer">
+		<button
+			type="button"
+			class="btn btn-outline-secondary"
+			(click)="modal.dismiss('cancel click')"
+		>
+			Cancel
+		</button>
+		<button
+			type="button"
+			class="btn btn-danger"
+			(click)="deleteConfirmed(modal)"
+		>
+			Delete
+		</button>
+	</div>
+</ng-template>

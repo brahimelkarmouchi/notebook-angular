@@ -126,15 +126,10 @@
 		cursor: pointer;
 		color: $text-secondary;
 		font-size: 1rem;
-		display: inline-flex;
-		height: 40px;
-		width: 40px;
-		border-radius: 100%;
-		align-items: center;
-		justify-content: center;
 		@include transition(0.3s);
-		&:hover {
-			background: rgba(0, 0, 0, 0.05);
+
+		button {
+			border-radius: 2px;
 		}
 	}
 }
@@ -145,4 +140,13 @@
 	right: 70px;
 	z-index: 999;
 	width: 300px;
+}
+
+.avatar {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 100%;
 }

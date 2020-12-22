@@ -1,10 +1,10 @@
 <ng-container *ngIf="note">
 	<div class="row note-actions justify-content-end">
-		<div class="col-md-auto note-action text-danger" (click)="deleteNote()">
-			<fa-icon [icon]="faTrash"></fa-icon>
+		<div class="col-md-auto note-action" (click)="deleteNote()">
+			<button class="btn btn-outline-danger" type="button">Delete</button>
 		</div>
 		<div class="col-md-auto note-action" (click)="updateNote()">
-			<fa-icon [icon]="faSave"></fa-icon>
+			<button class="btn btn-primary" type="button">Save</button>
 		</div>
 	</div>
 
