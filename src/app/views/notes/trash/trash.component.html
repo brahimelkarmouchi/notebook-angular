@@ -1,0 +1,82 @@
+<div class="row p-4">
+	<div class="col-md-12 mb-3">
+		<h3>Trash</h3>
+	</div>
+
+	<div class="col-md-12">
+		<div class="row">
+            <div class="col-md-12" *ngIf="trashNotes && trashNotes.length == 0">You have no notes in trash.</div>
+			<div class="col-md-4" *ngFor="let note of trashNotes">
+				<div
+                    class="card mb-4"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ note.title ? (note.title | truncate: 45) : 'Untitled' }}
+                        </h5>
+                        <p class="card-text" [innerHTML]="note.body ? (note.body | truncate: 80) : ''"></p>
+                        <ul class="card-info list-inline">
+                            <li class="list-inline-item">
+                                Modified : {{ note.updated_at | date: 'short' }}
+                            </li>
+                            <li class="list-inline-item">
+                                Deleted : {{ note.deleted_at | date: 'short' }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button
+                            type="button"
+                            class="btn card-action text-primary"
+                            title="Restore"
+                            (click)="restore(note.id)"
+                        >
+                            <fa-icon [icon]="faUndo"></fa-icon>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn card-action text-danger"
+                            title="Delete permanently"
+                            (click)="showConfirmModal($event, content, note)"
+                        >
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-feedback-alert
+    [alert]="alert"
+    (closed)="closed($event)"
+></app-feedback-alert>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-title">Confirm deletion</h4>
+	</div>
+	<div class="modal-body">
+		<p>
+			Are you sure you want to delete this note ?
+        </p>
+        <p class="text-danger">This action is not reversible.</p>
+	</div>
+	<div class="modal-footer">
+		<button
+			type="button"
+			class="btn btn-outline-secondary"
+			(click)="modal.dismiss('cancel click')"
+		>
+			Cancel
+		</button>
+		<button
+			type="button"
+			class="btn btn-danger"
+			(click)="delete(modal)"
+		>
+			Delete
+		</button>
+	</div>
+</ng-template>

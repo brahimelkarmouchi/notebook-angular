@@ -21,3 +21,42 @@
 @import 'sidebar';
 @import 'landing-screens/auth';
 @import 'dashboard';
+
+.hero {
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80') no-repeat center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &:after {
+        // Overlay
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba($color: #000000, $alpha: 0.3);
+    }
+
+    .inner-hero {
+        position: relative;
+        z-index: 2;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        .btn {
+            width: 150px;
+            margin: 0 10px;
+            padding: 10px 0;
+        }
+    }
+}

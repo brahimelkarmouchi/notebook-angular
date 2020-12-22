@@ -14,6 +14,10 @@ export class NotesService {
 		return this.http.get<Note[]>(this.baseURL)
 	}
 
+	getTrashedNotes(): Observable<Note[]> {
+		return this.http.get<Note[]>(`${this.baseURL}/trashed`)
+	}
+
 	getNote($id: number): Observable<Note> {
 		return this.http.get<Note>(`${this.baseURL}/${$id}`)
 	}
@@ -38,5 +42,13 @@ export class NotesService {
 
 	removeTag(noteId: number, tagId: number): Observable<any> {
 		return this.http.delete(`${this.baseURL}/${noteId}/tags/${tagId}`)
+	}
+
+	restoreNote(id: number): Observable<any> {
+		return this.http.patch(`${this.baseURL}/trashed/${id}`, {})
+	}
+
+	deleteNotePermanently(id: number): Observable<any> {
+		return this.http.delete(`${this.baseURL}/trashed/${id}`)
 	}
 }

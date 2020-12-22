@@ -20,7 +20,8 @@ import { EditComponent } from './views/notes/edit/edit.component'
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular'
 import { FeedbackAlertComponent } from './components/feedback-alert/feedback-alert.component'
 import { PasswordConfirmValidatorDirective } from './directives/password-confirm-validator.directive';
-import { ProfileComponent } from './views/auth/profile/profile.component'
+import { ProfileComponent } from './views/auth/profile/profile.component';
+import { TrashComponent } from './views/notes/trash/trash.component'
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { ProfileComponent } from './views/auth/profile/profile.component'
 		FeedbackAlertComponent,
 		PasswordConfirmValidatorDirective,
 		ProfileComponent,
+		TrashComponent,
 	],
 	imports: [
 		BrowserModule,
